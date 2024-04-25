@@ -1,4 +1,5 @@
-import React from 'react'
+import {useState} from 'react'
+import Button from './common/Button'
 
 interface AddTaskModalProps{
   close: () => void
@@ -6,7 +7,19 @@ interface AddTaskModalProps{
 
 const AddTaskModal = ({close}: AddTaskModalProps) => {
 
+  const ButtonTitles =  ["Due Date", "Priority"]
 
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    DueDate: new Date(),
+    priority: "",
+    status: "not started"
+  })
+
+  const data = new Date().toISOString();
+
+  console.log(data)
   return (
     <div className='fixed top-0 left-0 right-0 flex h-full bg-[#0618028c] z-[99999999999] transition-width duration-500 delay-700 ease-out'>
       <div className='relative w-full'>
@@ -21,10 +34,14 @@ const AddTaskModal = ({close}: AddTaskModalProps) => {
               </div>
               
           </div>
-          <div className='flex flex-col '>
-            <button className='min-w-[88.72px] mx-auto mt-[30px] h-[28px] rounded-sm border-[2px] border-[#c8f4ee]'>
-              Due Date
-            </button>
+          <div className='flex flex-col'>
+      
+          <div className='pl-[20px] gap-[20px] flex justify-start'>
+            {ButtonTitles.map((title) => (
+            <Button title={title} btnStyles='min-w-[88.72px] mt-[30px] h-[28px] rounded-sm border-[2px] border-[#c8f4ee]'/>
+          ))}
+          </div>
+          
             <hr className='block my-[30px]'/>
             <div className='flex gap-[15px] justify-end pb-[30px]'>
                 <button onClick={close}>

@@ -3,7 +3,7 @@ import AddTaskModal from './AddTaskModal'
 import { FaEdit } from 'react-icons/fa'
 import { FaSearch } from 'react-icons/fa'
 import { CgAddR } from 'react-icons/cg'
-import { IoEyeOutline } from 'react-icons/io5'
+import { MdDelete } from "react-icons/md";
 
 const HomePage = () => {
 
@@ -18,7 +18,7 @@ const HomePage = () => {
                  <CgAddR/>
                </button>
             </div>
-            <div className='bg-[#8FE1D7] whitespace-[5px] text-[#fff8f8] min-h-[200px] px-[30px] py-[20px] mt-[6em]'>
+            <div className='bg-[#8FE1D7] shadow-md whitespace-[5px] text-[#fff8f8] min-h-[200px] px-[30px] py-[20px] mt-[6em]'>
                 Search Your Tasks
                 <div className='w-full flex flex-col'>
                   <div className='flex min-w-[350px] justify-center mx-auto'>
@@ -33,6 +33,7 @@ const HomePage = () => {
                         <input type="checkbox" name="" id="" />
                         <span className='text-[#000] stroke-lime-500 line-through'>Make a logo bigger</span>
                          <span className='text-green-400'><FaEdit/></span>
+                         <span className='text-red-500 text-[18px]'><MdDelete/></span>
                       </li>
                     </ul>
                   </div>
