@@ -3,14 +3,13 @@ import React from 'react'
 interface ButtonProps {
     btnStyles: string;
     title: string;
-    handleOnClick?: () => void
+    handleOnClick?: () => void;
+    btnType: string;
 }
 
-const Button = ({btnStyles, title}: ButtonProps) => {
+const Button = ({btnStyles, title, btnType}: ButtonProps) => {
   return (
-    <button className={`${btnStyles} `}>
-        {title}
-    </button>
+    <input type={btnType} className={`${btnStyles} `}/>
   )
 }
 

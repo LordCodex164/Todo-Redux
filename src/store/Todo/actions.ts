@@ -1,31 +1,38 @@
 import { ADD_TODO, DELETE_TODO } from "./constants"
 
 
-interface AddTodos {
-    title: string;
+interface todos {
+    id: string;
+    taskName: string;
     desc: string;
-    priority: string;
-    date: Date;
+    dueDate: Date;
     status: string
 }
 
-const addTodo = (data: AddTodos) => {
+const addTodo = (data: todos) => {
     return {
         type: ADD_TODO,
         payload: data
     }
 }
 
-const editTodo = () => {
+const editTodo = (id:number, data: todos) => {
+
+    const updatedUser = {
+        id,
+        data
+    }
+
     return {
         type: ADD_TODO,
-        
+        payload: updatedUser
     }
 }
 
-const deleteTodo = () => {
+const deleteTodo = (id:string) => {
     return {
-        type: DELETE_TODO
+        type: DELETE_TODO,
+        payload: id
     }
 }
 

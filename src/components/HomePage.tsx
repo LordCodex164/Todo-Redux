@@ -1,13 +1,19 @@
-import React, {useState} from 'react'
+import {useState, Fragment} from 'react'
 import AddTaskModal from './AddTaskModal'
 import { FaEdit } from 'react-icons/fa'
 import { FaSearch } from 'react-icons/fa'
 import { CgAddR } from 'react-icons/cg'
 import { MdDelete } from "react-icons/md";
 
+
 const HomePage = () => {
 
   const [showModal, setShowModal] = useState<boolean>(false)
+
+  const B = [
+    { name: 'Wade Cooper' },
+    { name: 'Arlene Mccoy' },
+  ]
 
   return (
     <div className='relative w-full'>
