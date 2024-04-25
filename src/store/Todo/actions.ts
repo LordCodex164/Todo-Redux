@@ -1,31 +1,31 @@
-import { ADD_TODO, DELETE_TODO } from "./constants"
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, UNTOGGLE_TODO } from "./constants"
 
 
-interface todos {
+export interface todosState {
     id: string;
     taskName: string;
     desc: string;
-    dueDate: Date;
+    dueDate: string;
     status: string
 }
 
-const addTodo = (data: todos) => {
+const addTodo = (data: todosState) => {
     return {
         type: ADD_TODO,
         payload: data
     }
 }
 
-const editTodo = (id:number, data: todos) => {
+const editTodo = (id:number, data: todosState) => {
 
-    const updatedUser = {
-        id,
-        data
-    }
+  
 
     return {
         type: ADD_TODO,
-        payload: updatedUser
+        payload: {
+            id,
+            data
+        }
     }
 }
 
@@ -36,8 +36,24 @@ const deleteTodo = (id:string) => {
     }
 }
 
+const toggleTodo = (i: number) => {
+    return {
+        type: TOGGLE_TODO,
+        payload: i
+    }
+}
+
+const unToggleTodo = (i: number) => {
+    return {
+        type: UNTOGGLE_TODO,
+        payload: i
+    }
+}
+
 export {
     addTodo,
     editTodo,
-    deleteTodo
+    deleteTodo,
+    toggleTodo,
+    unToggleTodo
 }

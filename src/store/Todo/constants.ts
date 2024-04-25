@@ -1,11 +1,13 @@
  const ADD_TODO = "ADD_TODO"
  const DELETE_TODO = "DELETE_TODO"
  const EDIT_TODO = "EDIT_TODO"
-
-
+ const TOGGLE_TODO = "TOGGLE_TODO"
+ const UNTOGGLE_TODO = "UNTOGGLE_TODO"
 
 export {
     ADD_TODO,
     DELETE_TODO,
-    EDIT_TODO
+    EDIT_TODO,
+    TOGGLE_TODO,
+    UNTOGGLE_TODO
 }
