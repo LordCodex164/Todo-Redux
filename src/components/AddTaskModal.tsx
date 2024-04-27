@@ -1,12 +1,12 @@
-import {Fragment, ReducerState, useState} from 'react'
+import {Fragment, useState} from 'react'
 import Button from './common/Button'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodo } from '../store/Todo/actions'
 import uniqid from 'uniqid';
 import { toast } from 'react-toast'
 import { Listbox, Transition } from '@headlessui/react'
 import { BiChevronUp } from 'react-icons/bi';
-
+import { BiChevronDown } from 'react-icons/bi';
 
 interface AddTaskModalProps{
   close: () => void
@@ -51,15 +51,13 @@ const [selected, setSelected] = useState(buttonStatus[0])
     const action = dispatch(addTodo(data))
     if(action) {
      setIsloading(true)
-      const timeOut  = setTimeout(() => {
+     setTimeout(() => {
        setIsloading(false) 
        close()
       }, 1000)
     }
     }
   }
-
-  const data = new Date().toISOString().split("T")[0];
 
   const handleOnChangeButton = (e: any) => {
     console.log(e.target.value)
@@ -87,13 +85,13 @@ const [selected, setSelected] = useState(buttonStatus[0])
              <div className='relative mt-3'>
                 <Listbox.Button className="relative w-full flex justify-between items-center cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                    <span className='block truncate'>{selected.name}</span>
-                    <span className=''>
+                    {/* <span className=''>
                       <BiChevronUp/>
-                    </span>
+                    </span> */}
                 </Listbox.Button>
                 <Transition
                 as={Fragment}>
-                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 ring-black/5 focus:outline-none sm:text-sm">
                    {buttonStatus.map((item, i) => (
                     <Listbox.Option
                      key={i}

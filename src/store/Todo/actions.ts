@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, UNTOGGLE_TODO } from "./constants"
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, TOGGLE_TODO, UNTOGGLE_TODO } from "./constants"
 
 
 export interface todosState {
@@ -16,12 +16,10 @@ const addTodo = (data: todosState) => {
     }
 }
 
-const editTodo = (id:number, data: todosState) => {
-
-  
+const editTodo = (id:string, data: todosState) => {
 
     return {
-        type: ADD_TODO,
+        type: EDIT_TODO,
         payload: {
             id,
             data
