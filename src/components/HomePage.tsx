@@ -8,22 +8,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { todosState, toggleTodo, unToggleTodo } from '../store/Todo/actions'
 import EditTaskModal from './EditTaskModal'
 import DeleteTaskPrompt from './DeleteTaskPrompt'
-import store from '../store'
+
 const HomePage = () => {
 
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showEditModal, setShowEditModal] = useState<boolean>(false)
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [item, setItem] = useState<todosState | null>(null)
-  const [todosState, setTodosState] = useState([])
   const [todoState, setTodoState] = useState<todosState[]  | []>([])
   const [searchVal, setSearchVal] = useState("")
 
   const todos = useSelector((state:any) => state.todos.todos)
-
-  useEffect(() => {
-  setTodoState(todos.todos)
-  },[])
 
   const dispatch = useDispatch()
 
@@ -49,9 +44,7 @@ const HomePage = () => {
   const handleSearch = () => { 
     if(searchVal !== "") {
      const filtItems = todoState.filter((item) => item.taskName.toLowerCase().includes(searchVal.toLowerCase()))
-     console.log(filtItems)
-      
-      setTodoState(filtItems)
+     setTodoState(filtItems)
       return;
     }
     else {
@@ -60,8 +53,11 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-     const todos = JSON.parse(localStorage.getItem("todos") as string)
-     setTodoState(todos.todos.todos)
+     if(localStorage.getItem("todos")) {
+      const todos = localStorage.getItem("todos") ? JSON.parse(localStorage.getItem("todos") as string) : []
+     setTodoState(todos.todos.todos ? todos.todos.todos : [])
+     }
+     console.log("nill")
   }, [todos])
   
 
@@ -86,7 +82,7 @@ const HomePage = () => {
                   <div className='flex flex-col w-full mt-[10px]'>
                     <p>Tasks List</p>
                     <ul className='text-center'>
-                      {todoState?.length > 0  ? todoState?.map((item:any, i:number) => (
+                      {todoState?.length > 0 || todoState.length  ? todoState?.map((item:any, i:number) => (
                         <li className='bg-[#fff] py-[12px] flex items-center justify-around mx-auto  max-w-[350px]'>
                           <input onClick={() => handleToggle(i)} type="checkbox" name="" id="" />
                           <span className={`text-[#000] stroke-lime-500 ${item.status === "Completed" && "line-through"}`}>{item.taskName}</span>
